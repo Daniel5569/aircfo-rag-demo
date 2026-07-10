@@ -4,7 +4,7 @@ services:
     runtime: python
     rootDir: mcp_server
     buildCommand: pip install -r ../requirements.txt
-    startCommand: uvicorn api:app --host 0.0.0.0 --port $PORT
+    startCommand: python ../data/generate_dataset.py && python ../ingest/ingest.py && uvicorn api:app --host 0.0.0.0 --port $PORT
     envVars:
       - key: ANTHROPIC_API_KEY
         sync: false

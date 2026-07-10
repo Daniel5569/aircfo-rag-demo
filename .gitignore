@@ -1,7 +1,6 @@
 __pycache__/
 *.pyc
 .env
-ingest/aircfo_demo.sqlite3
 node_modules/
 frontend/dist/
 .DS_Store

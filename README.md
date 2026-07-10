@@ -139,24 +139,33 @@ export DATABASE_URL=postgresql://aircfo:aircfo_dev_password@localhost:5433/aircf
 python ingest/ingest.py
 ```
 
-## Deploying (Vercel + Render + Neon)
+## Deploying (Vercel + Render)
 
 Backend runs on Render, not Vercel: Vercel's Python serverless functions cap
 deployment size well below what `sentence-transformers` + `torch` need. Render
 runs a normal long-lived Python process instead, no size limit problem.
 
-1. **Neon**: create a free Postgres project, copy its connection string.
-   Locally, run `DATABASE_URL=<neon-connection-string> python ingest/ingest.py`
-   once to seed the pgvector table.
-2. **Render**: create a free account, "New +" → "Blueprint", point it at this
-   GitHub repo. `render.yaml` at the repo root already defines the service
-   (root dir `mcp_server`, build + start commands). Set `ANTHROPIC_API_KEY`
-   and `DATABASE_URL` (the same Neon string from step 1) as environment
-   variables in the Render dashboard, then deploy. Copy the resulting
-   `https://aircfo-api-xxxx.onrender.com` URL.
-3. **Vercel**: create a free account, "Add New" → "Project", point it at this
+The free demo deployment skips Postgres/Neon entirely and ships the
+pre-built SQLite index (`ingest/aircfo_demo.sqlite3`) committed in the repo,
+for a reason worth knowing: Render's free instance is 512MB RAM / 0.1 CPU,
+and running `ingest.py` (downloads + runs the embedding model) at every cold
+start blew past Render's ~5 minute port-binding timeout before the server
+even came up. Regenerating and re-committing that file after changing the
+dataset is a one-line `python ingest/ingest.py` run before pushing. A real
+deployment with live data would use pgvector on Neon (the code already
+supports it via `DATABASE_URL`, see `ingest/vector_store.py`) on an instance
+with enough CPU/RAM to embed at request time.
+
+1. **Render**: create a free account, "New +" → "Web Service", point it at
+   this GitHub repo. Root Directory `mcp_server`, Build Command
+   `pip install -r ../requirements.txt`, Start Command
+   `uvicorn api:app --host 0.0.0.0 --port $PORT`, Instance Type Free. Add
+   `ANTHROPIC_API_KEY` as an environment variable if you have one (optional —
+   without it the API runs in "degraded mode", see above). Deploy. Copy the
+   resulting `https://<name>.onrender.com` URL.
+2. **Vercel**: create a free account, "Add New" → "Project", point it at this
    repo with Root Directory set to `frontend`. Add an environment variable
-   `VITE_API_BASE` = the Render URL from step 2, then deploy.
+   `VITE_API_BASE` = the Render URL from step 1, then deploy.
 
 Render's free tier spins down after inactivity, so the first request after a
 while can take ~30s to wake up — worth knowing before sending a link to

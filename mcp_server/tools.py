@@ -6,6 +6,7 @@ same functions back the MCP tool-call path and the plain REST path.
 import json
 import os
 import pickle
+import re
 import sys
 from pathlib import Path
 
@@ -101,15 +102,61 @@ _TOOL_DISPATCH = {
 }
 
 
+_MONTH_RE = re.compile(
+    r"(January|February|March|April|May|June|July|August|September|October|November|December)\s+\d{4}",
+    re.IGNORECASE,
+)
+_FLUX_KEYWORDS = ("why", "jump", "increase", "decrease", "drop", "change", "spike", "rise", "fell", "grew")
+_ANOMALY_KEYWORDS = ("duplicate", "anomal", "overdue", "suspicious", "double-billed", "double billed")
+
+
+def _degraded_mode_answer(question: str) -> dict:
+    """No ANTHROPIC_API_KEY: there's no model to decide which tool fits the
+    question, so a plain semantic search over raw text is the only fallback -
+    and it fails hard on questions like "duplicate payments", since no ingested
+    chunk's text literally contains that word (it's a computed fact, not a
+    quote). These keyword checks are a stopgap covering the two computed-fact
+    tools; a real API key makes this whole function unreachable."""
+    q_lower = question.lower()
+
+    if any(kw in q_lower for kw in _ANOMALY_KEYWORDS):
+        result = find_anomalies()
+        citations = []
+        _collect_citations("find_anomalies", result, citations)
+        lines = [f"- [{c['source']}/{c['ref']}] {c['text']}" for c in citations]
+        answer = "[degraded mode: routed to find_anomalies by keyword match]\n" + (
+            "\n".join(lines) if lines else "No duplicate payments or overdue invoices found."
+        )
+        return {"answer": answer, "citations": citations}
+
+    month_match = _MONTH_RE.search(question)
+    if month_match and any(kw in q_lower for kw in _FLUX_KEYWORDS):
+        month = month_match.group(0)
+        result = monthly_flux_analysis(month)
+        if "error" not in result:
+            citations = []
+            _collect_citations("monthly_flux_analysis", result, citations)
+            lines = [f"- [{c['source']}/{c['ref']}] {c['text']}" for c in citations]
+            answer = (
+                f"[degraded mode: routed to monthly_flux_analysis for {month}]\n"
+                f"Revenue changed by ${result['revenue_delta_usd']}, net income by ${result['net_income_delta_usd']} "
+                f"vs {result['compared_to']}.\n" + "\n".join(lines)
+            )
+            return {"answer": answer, "citations": citations}
+
+    result = query_financials(question)
+    result["answer"] = "[degraded mode, set ANTHROPIC_API_KEY for tool-use reasoning]\n" + result["answer"]
+    return result
+
+
 def answer_question(question: str, max_turns: int = 4) -> dict:
     """Main chat entry point. With ANTHROPIC_API_KEY set, runs a Claude tool-use
     loop over all 3 tools and returns a cited answer. Without a key, falls back
-    to plain semantic search (degraded: no cross-tool reasoning)."""
+    to keyword-routed lookups (degraded: no real cross-tool reasoning, see
+    _degraded_mode_answer)."""
     api_key = os.environ.get("ANTHROPIC_API_KEY")
     if not api_key:
-        result = query_financials(question)
-        result["answer"] = "[degraded mode, set ANTHROPIC_API_KEY for tool-use reasoning]\n" + result["answer"]
-        return result
+        return _degraded_mode_answer(question)
 
     import anthropic
 

@@ -5,31 +5,31 @@ same functions back the MCP tool-call path and the plain REST path.
 """
 import json
 import os
+import pickle
 import sys
 from pathlib import Path
 
 import pandas as pd
 
-# Model is already cached locally after the first ingest run; skip the
-# Hugging Face Hub network round-trip on every cold start (it was adding
-# 20-30s of latency per process start, depending on network conditions).
-os.environ.setdefault("HF_HUB_OFFLINE", "1")
-
 sys.path.insert(0, str(Path(__file__).parent.parent / "ingest"))
 from vector_store import get_vector_store  # noqa: E402
 
 DATA_DIR = Path(__file__).parent.parent / "data"
+VECTORIZER_PATH = Path(__file__).parent.parent / "ingest" / "tfidf_vectorizer.pkl"
 
-_model = None
+_vectorizer = None
 _store = None
 
 
 def _embedder():
-    global _model
-    if _model is None:
-        from sentence_transformers import SentenceTransformer
-        _model = SentenceTransformer("all-MiniLM-L6-v2")
-    return _model
+    """Returns the TF-IDF vectorizer fitted at ingestion time (see ingest/ingest.py
+    for why this isn't sentence-transformers: torch's RAM footprint crashed the
+    free-tier deployment)."""
+    global _vectorizer
+    if _vectorizer is None:
+        with open(VECTORIZER_PATH, "rb") as f:
+            _vectorizer = pickle.load(f)
+    return _vectorizer
 
 
 def _vector_store():
@@ -43,7 +43,7 @@ def search_financial_records(question: str, top_k: int = 6) -> list[dict]:
     """Semantic search over transactions/invoices/P&L/contracts. Returns row-level
     citations only, no synthesis; the raw building block query_financials/answer_question
     are built on top of."""
-    vec = _embedder().encode(question)
+    vec = _embedder().transform([question]).toarray()[0]
     hits = _vector_store().search(vec, top_k=top_k)
     return [
         {"source": h.source, "ref": h.ref, "text": h.text, "relevance": round(h.score, 3)}

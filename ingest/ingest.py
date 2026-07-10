@@ -4,20 +4,31 @@ a citable text chunk, embeds it, and loads it into the vector store.
 
 Run: python ingest/ingest.py
 (set DATABASE_URL to target Postgres/Neon instead of the local SQLite dev store)
+
+Embeddings are TF-IDF (scikit-learn), not sentence-transformers. That's a
+deliberate downgrade from real semantic embeddings: torch + transformers need
+several hundred MB of RAM just to import, which reliably crashed the free
+512MB Render instance this demo is deployed on. TF-IDF has no torch dependency
+and is nearly instant to fit/load, at the cost of matching on vocabulary
+overlap rather than true semantic similarity - fine for this corpus, where
+questions and records share a lot of literal terms (SaaS, invoice, vendor
+names). ingest/vector_store.py and mcp_server/tools.py don't need to know
+which embedder produced the vectors, only their dimensionality.
 """
 import csv
+import pickle
 import sys
 from pathlib import Path
 
 import numpy as np
 from pypdf import PdfReader
-from sentence_transformers import SentenceTransformer
+from sklearn.feature_extraction.text import TfidfVectorizer
 
 sys.path.insert(0, str(Path(__file__).parent))
 from vector_store import get_vector_store  # noqa: E402
 
 DATA_DIR = Path(__file__).parent.parent / "data"
-MODEL_NAME = "all-MiniLM-L6-v2"
+VECTORIZER_PATH = Path(__file__).parent / "tfidf_vectorizer.pkl"
 
 
 def load_transactions_chunks():
@@ -71,19 +82,21 @@ def load_contract_chunks():
 
 
 def main():
-    print(f"loading embedding model {MODEL_NAME} (first run downloads it once)...")
-    model = SentenceTransformer(MODEL_NAME)
-
     all_chunks = (
         load_transactions_chunks()
         + load_pnl_chunks()
         + load_invoice_chunks()
         + load_contract_chunks()
     )
-    print(f"prepared {len(all_chunks)} chunks, embedding...")
+    print(f"prepared {len(all_chunks)} chunks, fitting TF-IDF vectorizer...")
 
     texts = [c[2] for c in all_chunks]
-    embeddings = model.encode(texts, show_progress_bar=True, convert_to_numpy=True)
+    vectorizer = TfidfVectorizer(stop_words="english", max_features=2000)
+    embeddings = vectorizer.fit_transform(texts).toarray()
+
+    with open(VECTORIZER_PATH, "wb") as f:
+        pickle.dump(vectorizer, f)
+    print(f"saved fitted vectorizer to {VECTORIZER_PATH} (vocab size {len(vectorizer.vocabulary_)})")
 
     store = get_vector_store()
     store.reset()

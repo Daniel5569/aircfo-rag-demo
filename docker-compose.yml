@@ -1,0 +1,15 @@
+services:
+  db:
+    image: pgvector/pgvector:pg16
+    restart: unless-stopped
+    environment:
+      POSTGRES_USER: aircfo
+      POSTGRES_PASSWORD: aircfo_dev_password
+      POSTGRES_DB: aircfo_demo
+    ports:
+      - "5433:5432"
+    volumes:
+      - aircfo_pgdata:/var/lib/postgresql/data
+
+volumes:
+  aircfo_pgdata:

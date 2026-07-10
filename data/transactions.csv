@@ -1,0 +1,103 @@
+transaction_id,date,vendor,category,amount,description
+TXN-1000,2026-01-05,Vercel,SaaS Subscriptions,-250,Vercel monthly subscription - January 2026
+TXN-1001,2026-01-05,Neon (Postgres),SaaS Subscriptions,-180,Neon (Postgres) monthly subscription - January 2026
+TXN-1002,2026-01-05,Notion,SaaS Subscriptions,-320,Notion monthly subscription - January 2026
+TXN-1003,2026-01-05,Slack,SaaS Subscriptions,-210,Slack monthly subscription - January 2026
+TXN-1004,2026-01-05,Figma,SaaS Subscriptions,-150,Figma monthly subscription - January 2026
+TXN-1005,2026-01-05,Datadog,SaaS Subscriptions,-480,Datadog monthly subscription - January 2026
+TXN-1006,2026-01-01,Gusto Payroll,Payroll,-44557.71,Payroll - January 2026
+TXN-1007,2026-01-08,Toptal / Upwork Contractors,Contractors,-7707.75,Contractors - January 2026
+TXN-1008,2026-01-08,WeWork - Market St,Rent,-5200,Rent - January 2026
+TXN-1009,2026-01-04,Google Ads,Marketing,-2767.46,Marketing - January 2026
+TXN-1010,2026-01-18,Cooley LLP,Legal & Professional Services,-2842.14,Legal & Professional Services - January 2026
+TXN-1011,2026-01-14,Amazon Web Services,Cloud Infra (AWS),-6434.69,Cloud Infra (AWS) - January 2026
+TXN-1012,2026-01-03,"Various (Delta, Marriott, Uber)",Travel,-392.17,Travel - January 2026
+TXN-1013,2026-01-17,Amazon Business,Office Supplies,-313.98,Office Supplies - January 2026
+TXN-1014,2026-01-01,Customer Subscription Revenue,Revenue,58965,SaaS subscription revenue - January 2026
+TXN-1015,2026-02-05,Vercel,SaaS Subscriptions,-250,Vercel monthly subscription - February 2026
+TXN-1016,2026-02-05,Neon (Postgres),SaaS Subscriptions,-180,Neon (Postgres) monthly subscription - February 2026
+TXN-1017,2026-02-05,Notion,SaaS Subscriptions,-320,Notion monthly subscription - February 2026
+TXN-1018,2026-02-05,Slack,SaaS Subscriptions,-210,Slack monthly subscription - February 2026
+TXN-1019,2026-02-05,Figma,SaaS Subscriptions,-150,Figma monthly subscription - February 2026
+TXN-1020,2026-02-05,Datadog,SaaS Subscriptions,-480,Datadog monthly subscription - February 2026
+TXN-1021,2026-02-07,Gusto Payroll,Payroll,-42106.14,Payroll - February 2026
+TXN-1022,2026-02-23,Toptal / Upwork Contractors,Contractors,-7580.1,Contractors - February 2026
+TXN-1023,2026-02-18,WeWork - Market St,Rent,-5200,Rent - February 2026
+TXN-1024,2026-02-15,Google Ads,Marketing,-4307.36,Marketing - February 2026
+TXN-1025,2026-02-26,Cooley LLP,Legal & Professional Services,-2474.92,Legal & Professional Services - February 2026
+TXN-1026,2026-02-25,Amazon Web Services,Cloud Infra (AWS),-10346.5,Cloud Infra (AWS) - February 2026
+TXN-1027,2026-02-23,"Various (Delta, Marriott, Uber)",Travel,-2636.88,Travel - February 2026
+TXN-1028,2026-02-09,Amazon Business,Office Supplies,-466.96,Office Supplies - February 2026
+TXN-1029,2026-02-01,Customer Subscription Revenue,Revenue,63636,SaaS subscription revenue - February 2026
+TXN-1030,2026-03-05,Vercel,SaaS Subscriptions,-250,Vercel monthly subscription - March 2026
+TXN-1031,2026-03-05,Neon (Postgres),SaaS Subscriptions,-180,Neon (Postgres) monthly subscription - March 2026
+TXN-1032,2026-03-05,Notion,SaaS Subscriptions,-640,Notion monthly subscription - March 2026 (Seat count doubled from 8 to 16 (eng team growth))
+TXN-1033,2026-03-05,Slack,SaaS Subscriptions,-210,Slack monthly subscription - March 2026
+TXN-1034,2026-03-05,Figma,SaaS Subscriptions,-150,Figma monthly subscription - March 2026
+TXN-1035,2026-03-05,Datadog,SaaS Subscriptions,-480,Datadog monthly subscription - March 2026
+TXN-1036,2026-03-08,Retool,SaaS Subscriptions,-600,"Retool monthly subscription - March 2026 (new vendor, onboarded March 2026)"
+TXN-1037,2026-03-08,Segment,SaaS Subscriptions,-450,"Segment monthly subscription - March 2026 (new vendor, onboarded March 2026)"
+TXN-1038,2026-03-08,PagerDuty,SaaS Subscriptions,-380,"PagerDuty monthly subscription - March 2026 (new vendor, onboarded March 2026)"
+TXN-1039,2026-03-25,Gusto Payroll,Payroll,-42861.26,Payroll - March 2026
+TXN-1040,2026-03-03,Toptal / Upwork Contractors,Contractors,-5682.97,Contractors - March 2026
+TXN-1041,2026-03-13,WeWork - Market St,Rent,-5200,Rent - March 2026
+TXN-1042,2026-03-12,Google Ads,Marketing,-2531.94,Marketing - March 2026
+TXN-1043,2026-03-26,Cooley LLP,Legal & Professional Services,-2535.65,Legal & Professional Services - March 2026
+TXN-1044,2026-03-15,Amazon Web Services,Cloud Infra (AWS),-6217.25,Cloud Infra (AWS) - March 2026
+TXN-1045,2026-03-13,"Various (Delta, Marriott, Uber)",Travel,-1855.06,Travel - March 2026
+TXN-1046,2026-03-10,Amazon Business,Office Supplies,-209.1,Office Supplies - March 2026
+TXN-1047,2026-03-01,Customer Subscription Revenue,Revenue,72074,SaaS subscription revenue - March 2026
+TXN-1048,2026-04-05,Vercel,SaaS Subscriptions,-250,Vercel monthly subscription - April 2026
+TXN-1049,2026-04-05,Neon (Postgres),SaaS Subscriptions,-180,Neon (Postgres) monthly subscription - April 2026
+TXN-1050,2026-04-05,Notion,SaaS Subscriptions,-640,Notion monthly subscription - April 2026 (Seat count doubled from 8 to 16 (eng team growth))
+TXN-1051,2026-04-05,Slack,SaaS Subscriptions,-210,Slack monthly subscription - April 2026
+TXN-1052,2026-04-05,Figma,SaaS Subscriptions,-150,Figma monthly subscription - April 2026
+TXN-1053,2026-04-05,Datadog,SaaS Subscriptions,-480,Datadog monthly subscription - April 2026
+TXN-1054,2026-04-08,Retool,SaaS Subscriptions,-600,"Retool monthly subscription - April 2026 (new vendor, onboarded March 2026)"
+TXN-1055,2026-04-08,Segment,SaaS Subscriptions,-450,"Segment monthly subscription - April 2026 (new vendor, onboarded March 2026)"
+TXN-1056,2026-04-08,PagerDuty,SaaS Subscriptions,-380,"PagerDuty monthly subscription - April 2026 (new vendor, onboarded March 2026)"
+TXN-1057,2026-04-12,Gusto Payroll,Payroll,-44474.08,Payroll - April 2026
+TXN-1058,2026-04-23,Toptal / Upwork Contractors,Contractors,-6886.76,Contractors - April 2026
+TXN-1059,2026-04-03,WeWork - Market St,Rent,-5200,Rent - April 2026
+TXN-1060,2026-04-08,Google Ads,Marketing,-2252.03,Marketing - April 2026
+TXN-1061,2026-04-03,Cooley LLP,Legal & Professional Services,-3246.89,Legal & Professional Services - April 2026
+TXN-1062,2026-04-04,Amazon Web Services,Cloud Infra (AWS),-10276.59,Cloud Infra (AWS) - April 2026
+TXN-1063,2026-04-15,"Various (Delta, Marriott, Uber)",Travel,-1402.37,Travel - April 2026
+TXN-1064,2026-04-12,Amazon Business,Office Supplies,-626.76,Office Supplies - April 2026
+TXN-1065,2026-04-01,Customer Subscription Revenue,Revenue,76666,SaaS subscription revenue - April 2026
+TXN-1066,2026-05-05,Vercel,SaaS Subscriptions,-250,Vercel monthly subscription - May 2026
+TXN-1067,2026-05-05,Neon (Postgres),SaaS Subscriptions,-180,Neon (Postgres) monthly subscription - May 2026
+TXN-1068,2026-05-05,Notion,SaaS Subscriptions,-640,Notion monthly subscription - May 2026 (Seat count doubled from 8 to 16 (eng team growth))
+TXN-1069,2026-05-05,Slack,SaaS Subscriptions,-210,Slack monthly subscription - May 2026
+TXN-1070,2026-05-05,Figma,SaaS Subscriptions,-150,Figma monthly subscription - May 2026
+TXN-1071,2026-05-05,Datadog,SaaS Subscriptions,-480,Datadog monthly subscription - May 2026
+TXN-1072,2026-05-08,Retool,SaaS Subscriptions,-600,"Retool monthly subscription - May 2026 (new vendor, onboarded March 2026)"
+TXN-1073,2026-05-08,Segment,SaaS Subscriptions,-450,"Segment monthly subscription - May 2026 (new vendor, onboarded March 2026)"
+TXN-1074,2026-05-08,PagerDuty,SaaS Subscriptions,-380,"PagerDuty monthly subscription - May 2026 (new vendor, onboarded March 2026)"
+TXN-1075,2026-05-07,Gusto Payroll,Payroll,-43480.72,Payroll - May 2026
+TXN-1076,2026-05-23,Toptal / Upwork Contractors,Contractors,-7350.88,Contractors - May 2026
+TXN-1077,2026-05-22,WeWork - Market St,Rent,-5200,Rent - May 2026
+TXN-1078,2026-05-20,Google Ads,Marketing,-5564.19,Marketing - May 2026
+TXN-1079,2026-05-18,Cooley LLP,Legal & Professional Services,-2666.91,Legal & Professional Services - May 2026
+TXN-1080,2026-05-06,Amazon Web Services,Cloud Infra (AWS),-9645.63,Cloud Infra (AWS) - May 2026
+TXN-1081,2026-05-09,"Various (Delta, Marriott, Uber)",Travel,-1640.55,Travel - May 2026
+TXN-1082,2026-05-21,Amazon Business,Office Supplies,-892.14,Office Supplies - May 2026
+TXN-1083,2026-05-01,Customer Subscription Revenue,Revenue,85318,SaaS subscription revenue - May 2026
+TXN-1084,2026-06-05,Vercel,SaaS Subscriptions,-250,Vercel monthly subscription - June 2026
+TXN-1085,2026-06-05,Neon (Postgres),SaaS Subscriptions,-180,Neon (Postgres) monthly subscription - June 2026
+TXN-1086,2026-06-05,Notion,SaaS Subscriptions,-640,Notion monthly subscription - June 2026 (Seat count doubled from 8 to 16 (eng team growth))
+TXN-1087,2026-06-05,Slack,SaaS Subscriptions,-210,Slack monthly subscription - June 2026
+TXN-1088,2026-06-05,Figma,SaaS Subscriptions,-150,Figma monthly subscription - June 2026
+TXN-1089,2026-06-05,Datadog,SaaS Subscriptions,-480,Datadog monthly subscription - June 2026
+TXN-1090,2026-06-08,Retool,SaaS Subscriptions,-600,"Retool monthly subscription - June 2026 (new vendor, onboarded March 2026)"
+TXN-1091,2026-06-08,Segment,SaaS Subscriptions,-450,"Segment monthly subscription - June 2026 (new vendor, onboarded March 2026)"
+TXN-1092,2026-06-08,PagerDuty,SaaS Subscriptions,-380,"PagerDuty monthly subscription - June 2026 (new vendor, onboarded March 2026)"
+TXN-1093,2026-06-22,Gusto Payroll,Payroll,-44227.8,Payroll - June 2026
+TXN-1094,2026-06-25,Toptal / Upwork Contractors,Contractors,-5621.41,Contractors - June 2026
+TXN-1095,2026-06-25,WeWork - Market St,Rent,-5200,Rent - June 2026
+TXN-1096,2026-06-27,Google Ads,Marketing,-2307.66,Marketing - June 2026
+TXN-1097,2026-06-11,Cooley LLP,Legal & Professional Services,-134.82,Legal & Professional Services - June 2026
+TXN-1098,2026-06-03,Amazon Web Services,Cloud Infra (AWS),-8005.82,Cloud Infra (AWS) - June 2026
+TXN-1099,2026-06-19,"Various (Delta, Marriott, Uber)",Travel,-911.85,Travel - June 2026
+TXN-1100,2026-06-11,Amazon Business,Office Supplies,-807.28,Office Supplies - June 2026
+TXN-1101,2026-06-01,Customer Subscription Revenue,Revenue,89870,SaaS subscription revenue - June 2026

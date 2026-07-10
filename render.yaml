@@ -1,0 +1,12 @@
+services:
+  - type: web
+    name: aircfo-api
+    runtime: python
+    rootDir: mcp_server
+    buildCommand: pip install -r ../requirements.txt
+    startCommand: uvicorn api:app --host 0.0.0.0 --port $PORT
+    envVars:
+      - key: ANTHROPIC_API_KEY
+        sync: false
+      - key: DATABASE_URL
+        sync: false

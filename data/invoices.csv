@@ -1,0 +1,9 @@
+invoice_id,vendor,amount,issue_date,due_date,paid_date,status
+INV-2001,Cooley LLP,4200.0,2026-02-10,2026-03-10,2026-03-09,paid
+INV-2002,Amazon Web Services,8950.0,2026-03-01,2026-03-31,2026-03-28,paid
+INV-2003,Toptal / Upwork Contractors,6200.0,2026-04-01,2026-05-01,,overdue
+INV-2004,Retool,600.0,2026-03-08,2026-04-07,2026-04-05,paid
+INV-2005,Datadog,480.0,2026-05-05,2026-06-04,2026-05-20,paid
+INV-2006,Datadog,480.0,2026-05-05,2026-06-04,2026-05-20,paid
+INV-2007,WeWork - Market St,5200.0,2026-05-01,2026-05-31,,overdue
+INV-2008,Google Ads,5100.0,2026-06-01,2026-07-01,2026-06-25,paid

@@ -15,6 +15,7 @@ from datetime import date
 from pathlib import Path
 
 from fpdf import FPDF
+from fpdf.enums import XPos, YPos
 
 random.seed(42)
 
@@ -199,7 +200,7 @@ def gen_contract_pdf(filename, vendor, monthly_fee, term_months, effective_date,
     pdf = FPDF()
     pdf.add_page()
     pdf.set_font("Helvetica", "B", 14)
-    pdf.cell(0, 10, "Master Service Agreement", ln=True)
+    pdf.cell(0, 10, "Master Service Agreement", new_x=XPos.LMARGIN, new_y=YPos.NEXT)
     pdf.set_font("Helvetica", "", 11)
     pdf.ln(4)
     pdf.multi_cell(0, 7,
